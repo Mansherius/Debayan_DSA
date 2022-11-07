@@ -1,4 +1,8 @@
 # Debayan_DSA
 Debayan's Data Structures Course for the monsoon sem of 2022.
 This is going to be the repository for the course and all of the code that we have and will write over the duration of this course.
-Must be updated periodically as it is informally worth ~50% of my grade for thise course and is also definitely a good learning exp.
+Must be updated periodically as it is worth ~50% of my grade for thise course and is also definitely a good learning exp.
+
+To the TA's looking at this:
+I am just writing this rn to focus and learn a few things and you can totally ignore it.
+I have been having issues with understanding git as well as learning C and this is impacting my learning in the rest of the course. I had spoken to Adwaiya about the issues and I will be uploading all the code ASAP.
