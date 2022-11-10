@@ -68,7 +68,7 @@ void CreatingLinkedList(Node** head, int n)
             {
                 prev = prev->next;
             }
-            //prevoius node now points to newly created node.
+            //previous node now points to newly created node.
             prev->next = temp;
             prev = temp;
         }
