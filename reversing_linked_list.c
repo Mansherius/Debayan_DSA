@@ -1,19 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*
-We shall use the same code as linked_list_with_user_inputs.c so that we do not need to recreate a list
-To reverse a linked list - 
-    The first element must now point to null and each element must point to the previous element
-    This would mean a list of 1 -> 2-> 3-> 4 -> NULL
-    would become 4->3->2->1->NULL
-    The way to manage this would first be to take the last element of the list
-    last element -> second last element
-    And repeat this till we get to the first element
-    
-    Psuedo code:
-    we create pointers prev, current and next
-*/
-
 
 
 struct nodeType
@@ -76,13 +62,41 @@ void CreatingLinkedList(Node** head, int n)
     }
 }
 
-void reverse(Node** head, int n)
+void reverse(Node** head)
 {
-    // We already have the created linked list so we have to first create nodes for prev, current, and next
-    // Now we traverse the list and start pointing the nodes to the previous node instead of the next node.
-    // The last node must now become the head
-
+    /*
+    We shall use the same code as linked_list_with_user_inputs.c so that we do not need to recreate a list
+    To reverse a linked list - 
+    The first element must now point to null and each element must point to the previous element
+    This would mean a list of 1 -> 2-> 3-> 4 -> NULL
+    would become 4->3->2->1->NULL
+    The way to manage this would first be to take the last element of the list
+    last element -> second last element
+    And repeat this till we get to the first element
     
+    Psuedo code:
+    we create pointers prev, current and next
+    Now we traverse the list and start pointing the nodes to the previous node instead of the next node.
+    The last node must now become the head
+    First the prev will point to null and current points to next
+    Then we create temp that points to next and make current point to prev
+    prev becomes current
+    current becomes next
+    and temp gets replaced to restart this till we get to current = NULL
+    */
+
+   Node *prev, *curr, *temp;
+   prev = NULL;
+   curr = (*head);
+
+   while (curr != NULL)
+   {
+        temp  = curr->next;  
+        curr->next = prev;   
+        prev = curr;
+        curr = temp;
+    }
+    (*head) = prev;
 }
 
 
@@ -117,6 +131,9 @@ int main()
     {
         CreatingLinkedList(&Linkedlist, n);  //calling function to create the list using inputs.
         printf("The required Linked List according to your inputs is: "); //printing the Linked List out
+        PrintingTheList(Linkedlist);
+        printf("The reversed Linked List is: ");
+        reverse(&Linkedlist);
         PrintingTheList(Linkedlist);
         freeList(Linkedlist);  //freeing the space taken by the list
 
