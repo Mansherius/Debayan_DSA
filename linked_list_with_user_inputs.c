@@ -15,7 +15,7 @@ void PrintingTheList(Node* head) {
     Node *temp = head;
     int i = 0;
     while(temp != NULL){
-        printf(i?" - %d":"%d", temp->data);
+        printf(i?" -> %d":"%d", temp->data);
         temp = temp->next;
         i++;
     }
