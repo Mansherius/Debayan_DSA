@@ -76,6 +76,19 @@ void CreatingLinkedList(Node** head, int n)
     }
 }
 
+void reverse(Node** head, int n)
+{
+    // We already have the created linked list so we have to first create nodes for prev, current, and next
+    // Now we traverse the list and start pointing the nodes to the previous node instead of the next node.
+    // The last node must now become the head
+
+    
+}
+
+
+
+
+
 //The last thing now required is a function to free the space we malloc'd for the linkedlist
 //Freeing a Linked List:
 void freeList(Node* head){
