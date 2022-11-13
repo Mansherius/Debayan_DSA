@@ -76,6 +76,11 @@ void print2D(TNode* root)
     print2DUtil(root, 0);
 }
 
+// ! Function to free memory allocated to a BST.
+void FreetheTree(TNode* root)
+{
+	free(root);
+}
 
 int main()
 {
@@ -86,4 +91,6 @@ int main()
 
     printf("Traversing the tree in Order: \n");
     print2D(root);
+    FreetheTree(root);
+    
 }
