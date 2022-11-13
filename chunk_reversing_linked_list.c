@@ -70,7 +70,7 @@ Node* chunkrev(Node **head, int k)
     /*
     psuedo code:
     1. reverse the first k elements of the linked list
-    2. add the reversed linked list to the new linked list
+    2. jump to next node without reversing
     3. repeat steps 2 and 3 until you reach the last node
 
     In more detail:
