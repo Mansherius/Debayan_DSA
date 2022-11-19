@@ -29,11 +29,12 @@ int * genrandarr(int n)
 
 
 // traversing the tree in order as this makes the most sense to me
-void PreOrder(struct node* root) {
-  if (root == NULL) return;
-  printf("%d ->", root->data);
-  PreOrder(root->left);
-  PreOrder(root->right);
+void PreOrder(struct node* root)
+{
+    if (root == NULL) return;
+    printf("-> %d ", root->data);
+    PreOrder(root->left);
+    PreOrder(root->right);
 }
 
 // Create a new Node
@@ -115,10 +116,10 @@ void PrintTree2D(TNode* root, int space)
 // Inorder traversal
 void PrintInOrder(TNode* root)
 {
-  if (root == NULL) return;
-  PrintInOrder(root->left);
-  printf(" -> %d", root->data);
-  PrintInOrder(root->right);
+    if (root == NULL) return;
+    PrintInOrder(root->left);
+    printf(" -> %d", root->data);
+    PrintInOrder(root->right);
 }
 
 // ! Function to free memory allocated to a BST.
@@ -162,6 +163,10 @@ int main(int argc, char **argv)
     
     printf("The inorder traversal of the Binary Tree is: \n");
     PrintInOrder(root);
+    printf("\n");
+    printf("The Preorder traversal of the Binary Tree is: \n");
+    PreOrder(root);
+
     FreetheTree(root);
     free(a);
     return 0;
