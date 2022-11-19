@@ -63,7 +63,7 @@ TNode* InsertInTree(TNode* root, int data)
 	else if (data > root->data)
     {
         root->right = InsertInTree(root->right, data);
-    }
+    } 
 	return root;
 }
 
@@ -102,6 +102,15 @@ void PrintTree2D(TNode* root, int space)
     PrintTree2D(root->left, space);
 }
 
+// Inorder traversal
+void PrintInOrder(TNode* root)
+{
+  if (root == NULL) return;
+  PrintInOrder(root->left);
+  printf(" -> %d", root->data);
+  PrintInOrder(root->right);
+}
+
 // ! Function to free memory allocated to a BST.
 void FreetheTree(TNode* root)
 {
@@ -132,6 +141,8 @@ int main(int argc, char **argv)
     
     PrintTree2D(root, 0);
     
+    printf("The inorder traversal of the Binary Tree is: \n");
+    PrintInOrder(root);
     FreetheTree(root);
     free(a);
     return 0;
