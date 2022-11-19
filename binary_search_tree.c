@@ -78,6 +78,16 @@ TNode* genTree(TNode* root, int* a, int n)
     return root;
 }
 
+TNode* FindInTree(TNode* root, int s)
+{
+	if(root)
+    {
+		if (s < root->data)      return FindInTree(root->left, s); // Will keep searching lower values in the tree
+        else if (s > root->data) return FindInTree(root->right, s); // Will keep searching higher values in the tree
+        else                     return root; // If the value is found, return the node
+	}
+	else return NULL; //When root is NULL
+}
 
 // Code based on snippet from geeksforgeeks to print 2D model
 void PrintTree2D(TNode* root, int space)
@@ -121,6 +131,7 @@ int main(int argc, char **argv)
 {
     int * a;
     int n;
+    int x;
     printf("How many elements should be in the Binary Tree? \n");
     scanf("%d", &n);
 
@@ -131,13 +142,21 @@ int main(int argc, char **argv)
     When using random values, I was getting degenerate trees and some trees that looked like complete nonsense
     To check if code is indeed correct, you can comment out the random array
     and use this predefined tester array instead:
-
+    
     int a[] = {4, 2, 1, 3, 8, 6, 13}; // Array to be used to generate BST
 	int n = 7;
     */
 
     TNode* root = NULL;
     root = genTree(root, a, n);
+
+    printf("Enter an element to be searched in the array: ");
+	scanf("%d", &x);
+	TNode* check; // We require a pointer to a node to check if the value is present in the tree
+	if(check = FindInTree(root, x)) printf("\nThe element %d is indeed present in the Binary Tree!\n", x);
+	else printf("\nThe element %d does not exist in this Tree.\n", x);
+
+    printf("    The Binary Search Tree     \n");
     
     PrintTree2D(root, 0);
     
