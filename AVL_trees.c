@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
-#include<time.h>
 
 // Unlike with BST's, AVL trees are self balancing trees and require a height parameter as well
 struct Node
