@@ -94,7 +94,7 @@ void PrintingTheList(Node* head) {
 }
 
 /*
-    Quicksort for both arrays and linked lists
+    Quicksort_arrays for both arrays and linked lists
 
     For arrays:
     1. We will use the first element as the pivot
@@ -105,7 +105,7 @@ void PrintingTheList(Node* head) {
 */
 
 // Partition function for arrays
-int Partition(int * a, int start, int stop)
+int Partition_arrays(int * a, int start, int stop)
 {
     int pivot = a[start];
     int wall = start;
@@ -123,15 +123,89 @@ int Partition(int * a, int start, int stop)
     return wall;
 }
 
-// Quicksort function for arrays
+// Quicksort_arrays function for arrays
 // Taking an array L and sort everything between start and stop
-void Quicksort(int * L, int start, int stop)
+void Quicksort_arrays(int * L, int start, int stop)
 {
     if (start < stop)
     {
-        int pivot = Partition(L, start, stop);
-        Quicksort(L, start, pivot - 1);
-        Quicksort(L, pivot + 1, stop);
+        int pivot = Partition_arrays(L, start, stop);
+        Quicksort_arrays(L, start, pivot - 1);
+        Quicksort_arrays(L, pivot + 1, stop);
+    }
+}
+
+/*
+    Obviously we cannot use the same partition function for linked lists nor can we use the swap function as it is
+    So we will have to make some changes to the partition function
+    We will also need to find last node of the linked list
+
+    For linked lists:
+
+*/
+
+// Finding last node of linked list
+Node* last_node(Node* head)
+{
+    Node* temp = head;
+    while (temp != NULL && temp->next != NULL) {
+        temp = temp->next;
+    }
+    return temp;
+}
+
+// Partition function for linked lists
+Node* Partition_linked(Node* first, Node* last)
+{
+    // Get first node of given linked list which will actually be the head of the linked list
+    Node* pivot = first;
+    Node* front = first;
+    int temp = 0;
+
+    //The pivot is the first node of the linked list and the loop runs till the last node of the linked list
+    while (front != NULL && front != last)
+    {
+        // If data in front is greater than the data in the end
+        if (front->data < last->data)
+        {
+            pivot = first;
+ 
+            // Swapping the data of the nodes
+            temp = first->data;
+            first->data = front->data;
+            front->data = temp;
+
+            first = first->next;
+        }
+        front = front->next;
+    }
+    // Same as the swap function for wall and start from the array partition function
+    temp = first->data;
+    first->data = last->data;
+    last->data = temp;
+
+    return pivot;
+}
+ 
+// Performing quick sort in  the given linked list
+void Quicksort_linked(Node* first, Node* last)
+{
+    // End condition for recursion
+    if (first == last)
+    {
+        return;
+    }
+    Node* pivot = Partition_linked(first, last);
+ 
+    if (pivot != NULL && pivot->next != NULL)
+    {
+        // Recursively calling the quicksort function on the left partition
+        Quicksort_linked(pivot->next, last);
+    }
+ 
+    if (pivot != NULL && first != pivot)
+    {
+        Quicksort_linked(first, pivot);
     }
 }
 
@@ -155,10 +229,24 @@ int main(int argc, char **argv) {
     PrintingTheList(list);
 
     printf("The sorted array is: \n");
-    Quicksort(a, 0, n-1);
+    Quicksort_arrays(a, 0, n-1);
     printArray(a,n);
+
+    printf("The sorted linked list is: \n");
+    Quicksort_linked(list, last_node(list));
+    PrintingTheList(list);
+
 	free(a);
 	freeLinkedList(list);
 
 	return 0;
 }
+
+
+/*
+    Some things to keep in mind:
+    We can also simply Take a linked list and convert to an array
+    Then Quicksort the array and generate a linked list from the array
+
+    However, this is not the most efficient way to do it
+*/
